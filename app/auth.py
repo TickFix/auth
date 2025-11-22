@@ -33,7 +33,7 @@ async def register(payload: RegisterIn):
     async with AsyncSession() as session:
         q = await session.execute(select(User).where(User.email == payload.email))
         if q.scalar_one_or_none():
-            raise HTTPException(status_code=400, detail="email already registered")
+            raise HTTPException(status_code=400, detail="email already registered.")
         user = User(
             firstname=payload.firstname,
             lastname=payload.lastname,
